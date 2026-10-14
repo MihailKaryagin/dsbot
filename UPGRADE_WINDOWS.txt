@@ -1,0 +1,26 @@
+ОБНОВЛЕНИЕ БОТА НА WINDOWS
+
+1. Остановите старого бота: Ctrl+C в его окне.
+2. Сохраните копию старой папки и распакуйте этот ZIP в новую папку.
+3. Из старой папки скопируйте в новую файл .env и всю папку data.
+   Копируйте после остановки. Старые файлы .py не копируйте.
+4. В .env проверьте:
+   ENABLE_MESSAGE_CONTENT=true
+   CODEX_SALE_API_KEY=ваш личный ключ
+   CODEX_SALE_BASE_URL=https://codex.sale/v1
+   OPENAI_MODEL=gpt-6.1-sol
+   Если старый ключ codex.sale указан как OPENAI_API_KEY, он тоже читается.
+5. В Discord Developer Portal включите Message Content Intent.
+6. Запустите setup.bat, затем start.bat.
+7. В настроенном канале выполните:
+   /bot mode value:ai
+   /bot smart enabled:true
+   /bot smart_settings mentions:true arguments:true name:false activity:high
+   /bot periodic enabled:false
+   /bot status
+8. Если бот молчит: /bot diagnose, затем logs/bot.log.
+   Паузы и лимита числа ответов больше нет.
+
+Если канал ещё не настроен, сначала выполните /bot setup every:20.
+Полная инструкция — README.md или README.html.
+Не передавайте никому .env, токены и ключ API.

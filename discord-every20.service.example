@@ -1,0 +1,17 @@
+[Unit]
+Description=Discord Every20 bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=discordbot
+WorkingDirectory=/opt/discord-every20
+ExecStart=/opt/discord-every20/.venv/bin/python /opt/discord-every20/bot.py
+Restart=on-failure
+RestartSec=15
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONUTF8=1
+
+[Install]
+WantedBy=multi-user.target

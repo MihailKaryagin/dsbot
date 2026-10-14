@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Discord Every20 SMART — установка на Windows</title>
+<style>body{font:17px/1.55 system-ui,Segoe UI,Arial,sans-serif;max-width:850px;margin:38px auto;padding:0 20px;color:#203040;background:#fafcff}h1,h2{line-height:1.2;color:#152b42}h2{margin-top:1.7em}code,pre{font:15px/1.5 Consolas,monospace;background:#edf3f8;border-radius:5px}code{padding:2px 5px}pre{padding:15px;overflow:auto}li{margin:.5em 0}a{color:#0756a7}aside{padding:12px 18px;background:#fff5dc;border-left:4px solid #d6a72d}</style>
+</head><body><h1>Discord Every20 SMART</h1>
+<p>Краткая инструкция по замене и запуску на Windows. Подробности, все команды и диагностика — в <a href="README.md">README.md</a>.</p>
+<h2>Обновление</h2><ol>
+<li>Остановите старого бота через <strong>Ctrl+C</strong>.</li>
+<li>Сохраните копию старой папки. Распакуйте новый ZIP в отдельную папку.</li>
+<li>После остановки скопируйте в новую папку старые <code>.env</code> и всю папку <code>data</code>. Старые файлы <code>.py</code> не копируйте.</li>
+<li>Запустите <code>setup.bat</code>, затем проверьте <code>.env</code> и запустите <code>start.bat</code>.</li>
+</ol>
+<aside>В <code>.env</code> нужен ваш ключ codex.sale: <code>CODEX_SALE_API_KEY</code>. Ключи и токены не входят в ZIP и не нужны для передачи нам. Включите <code>ENABLE_MESSAGE_CONTENT=true</code> и Message Content Intent в Discord Developer Portal.</aside>
+<h2>Настройка канала</h2><p>Если канал уже настроен, не нужно снова вызывать <code>/bot setup</code>. В нужном канале выполните:</p>
+<pre>/bot mode value:ai
+/bot smart enabled:true
+/bot smart_settings mentions:true arguments:true name:false activity:high
+/bot periodic enabled:false
+/bot status</pre>
+<p>Команда <code>/bot periodic enabled:false</code> выключает ответы по счётчику; SMART реагирует на обращения и конфликты. Настройки и промпт сохраняются в базе при обновлении.</p>
+<h2>Проверка</h2><p>Отправьте с другого аккаунта тестовое сообщение, например <code>кирик ты пидор</code> или <code>дура</code>. Паузы и лимита числа ответов нет. Если ответа нет, вызовите <code>/bot diagnose</code> и смотрите <code>logs/bot.log</code>. В логе записаны ID и причины, текст сообщений не записывается.</p>
+<p>Бот вызывает <code>https://codex.sale/v1/responses</code>. Проверьте модель и ключ по <a href="https://codex.sale/docs">инструкции codex.sale</a>. Тесты запускаются командой <code>.venv\Scripts\python.exe -m unittest discover -s tests -v</code>.</p>
+</body></html>
